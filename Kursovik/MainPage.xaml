@@ -1,0 +1,47 @@
+﻿<Window x:Class="Kursovik.MainPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Kursovik"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="MainPage" Height="491.4" Width="800" Loaded="Window_Loaded">
+    <Window.Resources>
+        <local:ZooparkDataSet x:Key="zooparkDataSet"/>
+        <CollectionViewSource x:Key="exkursionViewSource" Source="{Binding Exkursion, Source={StaticResource zooparkDataSet}}"/>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="101*"/>
+            <ColumnDefinition Width="296*"/>
+        </Grid.ColumnDefinitions>
+        <Viewbox>
+            <Grid x:Name="sidePanel" Background="#EAFFD0" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="22.871"/>
+                    <RowDefinition Height="7.529"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Background="#DEFFB4" HorizontalAlignment="Right" Margin="0,0,0.2,0" Width="167" >
+                    <TextBlock FontSize="18" FontWeight="DemiBold" HorizontalAlignment="Center" Margin="0,30,0,0">
+                Имя Фамилия
+                    </TextBlock>
+                    <TextBlock FontSize="13" HorizontalAlignment="Center">
+                Эл.почта
+                    </TextBlock>
+                </StackPanel>
+                <StackPanel Grid.Row="1" Background="#EAFFD0" Margin="0,0,0.2,41.2" Grid.RowSpan="2">
+                    <Button Content="Главная страница" Margin="0,0,0,10" FontWeight="Medium" Click="NavMainPage"/>
+                    <Button Content="Скидки и акции" Margin="0,0,0,10" FontWeight="Medium"/>
+                    <Button Content="История" Margin="0,0,0.2,10" FontWeight="Medium" Click="NavHistory"/>
+                    <Button Content="Избранное" Margin="0,0,0,10" FontWeight="Medium"/>
+                    <Button Content="О нас" Margin="0,0,0,20" FontWeight="Medium"/>
+                </StackPanel>
+                <Button Grid.Row="1" Content="Выйти из аккаунта" FontWeight="Medium" Margin="0,250,0.2,3.2"  Grid.RowSpan="2" Height="Auto"/>
+            </Grid>
+        </Viewbox>
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Grid.Column="1"/>
+    </Grid>
+</Window>

@@ -1,0 +1,42 @@
+﻿<Page x:Class="Kursovik.InfoExkurs"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Kursovik"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="400"
+      Title="InfoExkurs" Loaded="Window_Loaded">
+
+    <Page.Resources>
+        <local:ZooparkDataSet x:Key="zooparkDataSet"/>
+        <CollectionViewSource x:Key="exkursionViewSource" Source="{Binding Exkursion, Source={StaticResource zooparkDataSet}}"/>
+    </Page.Resources>
+    <Grid Background="White" Height="450" Width="400" Loaded="Window_Loaded">
+        <Grid x:Name="grid1" DataContext="{StaticResource exkursionViewSource}" HorizontalAlignment="Left" Margin="81,190,0,0" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="nameTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3,-175,0,180.8" Grid.Row="0" Text="{Binding Name}" Width="200" FontSize="14" FontWeight="Bold" Style="{StaticResource MaterialDesignButtonTextBlock}" VerticalAlignment="Center"/>
+            <TextBlock x:Name="priceTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="1" Text="{Binding Price}" Width="200" FontSize="14" VerticalAlignment="Center"/>
+            <TextBlock Text="руб." FontSize="14" Height="23" Margin="39,0,144.4,26.2" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2"/>
+            <TextBlock x:Name="maxManTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="2" Text="{Binding MaxMan}" Width="200"  FontSize="14" VerticalAlignment="Center"/>
+            <TextBlock Text="макс.чел." FontSize="14" Height="23" Margin="39,0,144.2,0.4" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="2"/>
+            <TextBlock x:Name="timeTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="3" Text="{Binding Time}" Width="200" FontSize="14" VerticalAlignment="Center"/>
+            <TextBlock Text="мин." FontSize="14" Height="23" Margin="39,0,143.4,1.6" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="3"/>
+            <TextBlock x:Name="skidkaTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="4" Text="{Binding skidka}" FontSize="14" VerticalAlignment="Center"/>
+            <TextBlock Text="% скидка" FontSize="14" Height="23" Margin="39,0,143.4,0" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="4"/>
+        </Grid>
+        <Button VerticalAlignment="Bottom" Width="200" Margin="50" Content="Бронировать" Click="Bronir"/>
+
+    </Grid>
+</Page>
